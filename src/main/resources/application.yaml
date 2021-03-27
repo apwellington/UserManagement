@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: Swager Test
+  datasource:
+    url: jdbc:mysql://localhost/test?
+    username: root
+    password: local
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+      generate-ddl: true
+      show-sql: true
+server:
+  port: 9090
