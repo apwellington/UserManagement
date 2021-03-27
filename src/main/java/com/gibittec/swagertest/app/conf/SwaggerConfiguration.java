@@ -1,4 +1,4 @@
-package com.gibittec.swagertest.app.util;
+package com.gibittec.swagertest.app.conf;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RestController;

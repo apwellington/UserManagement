@@ -1,4 +1,4 @@
-package com.gibittec.swagertest.app.util;
+package com.gibittec.swagertest.app.conf;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
