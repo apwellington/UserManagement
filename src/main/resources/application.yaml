@@ -7,8 +7,19 @@ spring:
     password: local
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
       generate-ddl: true
       show-sql: true
 server:
   port: 9090
+
+springfox:
+  documentation:
+    swaggerUi:
+      baseUrl: /documentation
+    openApi:
+      v3:
+        path: /documentation/v3/api-docs
+    swagger:
+      v2:
+        path: /documentation/v2/api-docs

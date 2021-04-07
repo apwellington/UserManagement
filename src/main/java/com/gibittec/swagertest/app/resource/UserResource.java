@@ -10,8 +10,10 @@ import io.swagger.annotations.ApiResponses;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,12 +27,15 @@ public class UserResource {
     private final UserService userService;
     private ModelMapper modelMapper;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public UserResource(UserService userService, ModelMapper modelMapper) {
         this.userService = userService;
         this.modelMapper = modelMapper;
     }
 
-    @PostMapping
+    @PostMapping("/register")
     @ApiOperation(value = "Create User", notes = "Endpoint to create new user")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "User Created Succesfull"),
@@ -38,6 +43,7 @@ public class UserResource {
     })
     public ResponseEntity<User> createUser(@RequestBody UserDto userDto){
         User user = this.modelMapper.map(userDto, User.class);
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         return new ResponseEntity<User>(this.userService.createUser(user), HttpStatus.CREATED);
     }
 
